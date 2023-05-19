@@ -18,7 +18,10 @@ const grade = async (studentId) =>
       $unwind: "$assignments",
     },
     {
-      // Your code here
+      $group: {
+        _id: studentId,
+        grade: { $avg: "$assignments.score" },
+      },
     },
   ]);
 
